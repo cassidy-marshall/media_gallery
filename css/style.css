@@ -1,4 +1,4 @@
-:root {/*-- sets color variables --*/ 
+:root {/*-- sets color variables --*/
   --dark: #444;
   --ltmid: #DDD;
   --dkmid: #999;
@@ -8,6 +8,7 @@
 body {
   color: var(--dark); /*-- sets body default font color --*/
   line-height: 1.4; /*-- sets body default line height --*/
+  background-color: #444;
 }
 /*-- default styles for links (in the correct order) --*/
 a {color: var(--accent); font-weight: 500; text-decoration: none; transition: all .2s ease-in-out;}
@@ -15,43 +16,86 @@ a:visited {color:#305eb3;}
 a:hover {color: var(--accent);}
 a:active {color: var(--dkmid);}
 
-header.top-nav { /*-- main nav styles --*/
-  background-color: var(--ltmid); /*-- nav background --*/
-  padding: 1rem 2rem 1rem 0; /*-- inside padding --*/
-  display: flex; /*-- header bar is a flex container --*/
-  min-height: 8rem; /*-- header bar has a minimum height --*/
-  justify-content: space-between; /*-- main axis space distribution --*/
-  align-items: center; /*-- cross axis space distribution --*/
-  position: relative; /*-- needed to absolutly position some children --*/
+header.top-nav {
+  background-color: var(--ltmid);
+  padding: 1rem 2rem 1rem 0;
+  display: flex;
+  min-height: 8rem;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
-nav { /*-- targets the links wrapper --*/
-  flex-basis: 30%; /*-- gives this flex child an ideal width --*/
-  display: flex; /*-- makes the child also a flex container --*/
-  justify-content: space-between; /*-- main axis space distribution --*/
+nav {
+  flex-basis: 30%;
+  display: flex;
+  justify-content: space-between;
 }
-a.nav-link { /*-- targets individual links --*/
-  padding-left: 2.8rem; /*-- sets some minimum padding --*/
-  color: var(--dark); /*-- text color --*/
-  font-weight: 500; /*-- text weight --*/
-  text-decoration: none; /*-- removes underlines --*/
-  transition: all .2s ease-in-out; /*-- sets a transition for hover effects --*/
+a.nav-link {
+  padding-left: 2.8rem;
+  color: var(--dark);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all .2s ease-in-out;
 }
 a.nav-link:hover {
-  color: var(--accent);  /*-- color on hover --*/
+  color: #A19890;
+
 }
-a.nav-link.logo {  /*-- just the site title --*/
-  text-transform: uppercase; /*-- makes all caps --*/
-  font-weight: 900; /*-- set to heaviest font --*/
+a.nav-link.logo {
+  text-transform: uppercase;
+  font-weight: 900;
 }
-a#trigram { /*-- hamburger menu icon --*/
-  display: none;  /*-- default display is none --*/
+a#trigram {
+  display: none;
 }
-a#trigram::before { /*-- uses ::before to change the menu icon --*/
-  content: '\2630'; /*-- sets it to show the hamburger icon --*/
-  font-size: 4rem; /*-- makes it very large --*/
-  position: relative; /*-- posititions it explicitly --*/
-  top: -.5rem; /*-- a little space from the top --*/
-  right: 0; /*-- flush right --*/
+a#trigram::before {
+  content: '\2630';
+  font-size: 4rem;
+  position: relative;
+  top: -.5rem;
+  right: 0;
+}
+.none {
+  display: none;
+}
+@media screen and (max-width: 990px) {
+  .nav-wrap {
+    display: none;
+  }
+  .nav-wrap.mobile {
+    position:absolute;
+    z-index: 10;
+    top: 7rem;
+    right: 0;
+    width: 100%;
+    padding: 0 2rem 2rem 2rem;
+    background: var(--ltmid);
+    display: flex; 
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+  }
+  .nav-wrap.mobile a {
+    display: block;
+    width: 100%;
+    text-align: right;
+    padding: 2rem 2rem;
+    margin: 0;
+  }
+  .nav-wrap.mobile a:hover {
+    background-color: var(--light);
+  }
+  a#trigram {
+    display: inherit;
+  }
+  a#trigram.tri-mobile::before {
+    content: '\00D7';
+  }
+}
+@media screen and (max-width: 990px) {
+  .nav-wrap {
+    display: none;
+  }
 }
 main {
   padding: 1rem 2rem; /*-- adds inside space around the main content area --*/
@@ -60,12 +104,15 @@ main {
   display: flex; /*-- declares a flex container --*/
   justify-content: center; /*-- center in the main axis --*/
   align-items: center; /*-- center in the cross axis --*/
-  height: 55rem; /*-- fixed hieght, probably delete this --*/
-  border: 2px dashed var(--dkmid); /*-- unsubtle border --*/
-  border-radius: 8px; /*-- rounded corners --*/
-  background-color: var(--light); /*-- a bit of light background color --*/
+  border: 2px solid var(--dkmid); /*-- unsubtle border --*/
+  background-color: black;
   color: var(--dkmid); /*-- text color is mid --*/
   position: relative; /*-- allows explicit positioning for children --*/
+}
+.slides{
+  display: flex;
+  margin: 0;
+  padding: 0;
 }
 .controls button { /*-- you'll probably replace all .controls styles with your own --*/
   cursor: pointer; /*-- changes hover cursor to the hand --*/
@@ -80,7 +127,8 @@ main {
   transition: 0.2s ease; /*-- sets transition speed for arrow hover--*/
 }
 .controls button:hover {
-  color: var(--accent); /*-- changes button color on hover --*/
+  color: #A19890 /*-- changes button color on hover --*/
+
 }
 .controls button:nth-child(1) {
   left: 1rem; /*-- positions first arrow to the left --*/
@@ -91,19 +139,18 @@ main {
 .slideshow h2 { /*-- styles the placeholder text (probably safe to delete) --*/
   font-size: 4rem; /*-- font is larger than normal --*/
 }
-.hero {
-  padding: 4rem 0; /*-- top and bottom padding for the container --*/
-  display: flex; /*-- declares a flex container --*/
-  flex-direction: column; /*-- direction downward --*/
-  justify-content: center; /*-- vertical center --*/
-  align-items: center; /*-- horizontal center --*/
-  background-color: var(--ltmid); /*-- light color --*/
-  width: 100vw; /*-- extra wide --*/
-  margin: 2rem 0 1rem -2rem; /*-- negative right margin compensates for extra width --*/
+.pics {
+  display: flex;
+  gap: 1rem;
 }
-.hero > * { /*-- targets all direct children of .hero --*/
-  margin: 0; /*-- zeroes their margins --*/
-  padding: 0; /*-- zeroes their padding --*/
+.pics img {
+  opacity: .5;
+  cursor: pointer;
+  transition: all .25s ease-in-out;
+  border: 2px dotted transparent;
+}
+.pics img:hover, img.active {
+  opacity: 1;
 }
 .grid-cont { /*-- styles the main grid container for media cards --*/
   padding: 2rem 0; /*-- top and bottom padding for the grid container --*/
@@ -128,13 +175,13 @@ main {
   display: flex; /*-- card is a flex container --*/
   flex-direction: column; /*-- flow is downward --*/
   border-radius: 8px; /*-- curved edges --*/
-  border: 2px dashed var(--dkmid); /*-- dashed border --*/
-  background-color: var(--light); /*-- a little bit of light color --*/
+  border: 2px solid var(--dkmid); 
+  background-color: #A19890; /*-- a little bit of light color --*/
 }
 .card img { /*-- selects image children of .card --*/
   width: 100%; /*-- full width of container --*/
   height: auto; /*-- maintain aspect ratio --*/
-  max-height: 320px; /*-- can't be too tall --*/
+  max-height: 350px; /*-- can't be too tall --*/
   border-radius: 8px 8px 0 0; /*-- curved corners, but just on the top --*/
 }
 .card button { /*-- selects button children of .card elements --*/
@@ -158,3 +205,114 @@ footer p { /*-- targets the footer text --*/
   text-align: center; /*-- centers the text --*/
   font-weight: 500; /*-- mid-weight font --*/
 }
+#modal-wrap {
+  display: none;
+  position: fixed;
+  z-index: 12;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30,30,30,0.95);
+}
+#modal-wrap.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5%;
+  overflow: scroll;
+}
+#modal-wrap.show .card-content {
+  position: relative;
+  width: 120rem;
+  margin: auto;
+  background-color: var(--light);
+  color: var(--dark);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0 2%;
+  border: 2px solid var(--light);
+  animation: fadein .3s ease-in-out;
+}
+#modal-wrap.show .card-content p {
+  -webkit-line-clamp: none;
+}
+#modal-wrap.show .card-content p:not(:first-of-type) {
+  display: inherit;
+}
+#photo {
+  height: 30rem;
+  width: auto;
+}
+.caption-wrap{
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 1%;
+  height: 6rem;
+  background-color: rgba(0,0,0,50%);
+  color:#A19890;
+  }
+  .open-modal {
+    display: inline-block;
+    padding: 12px 24px;
+    border: 1px solid #4f4f4f;
+    border-radius: 4px;
+    transition: all 0.2s ease-in;
+    position: relative;
+    overflow: hidden;
+    font-size: 15px;
+    color: black;
+    z-index: 1;
+    height: 5rem;
+    margin-left: 5em;
+    margin-right: 5em;
+  
+   }
+   
+   .open-modal:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.25);
+    top: 100%;
+    width: 140%;
+    height: 180%;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+   }
+   
+   .open-modal:after {
+    content: "";
+    position: absolute;
+    left: 55%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.45);
+    top: 180%;
+    width: 160%;
+    height: 190%;
+    background-color: #444;
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+   }
+   .open-modal:hover {
+    color: #ffffff;
+    border: 1px solid #444;
+   }
+   
+   .open-modal:hover:before {
+    top: -35%;
+    background-color: #444;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+   }
+   
+   .open-modal:hover:after {
+    top: -45%;
+    background-color: #444;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+   }
+

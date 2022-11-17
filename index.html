@@ -1,54 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Media Starter</title>
+  <title>Media Gallery</title>
   <link rel="stylesheet" href="css/modnorm.min.css">
   <link rel="stylesheet" href="css/style.css">
-  <!-- <link rel="stylesheet" href="css/nocom.css"> -->
 </head>
 <body>
   <header class="top-nav">
-    <a href="#" class="nav-link logo">Site&nbsp;Title</a>
+    <a href="#" class="nav-link logo">Landscape&nbsp;Views</a>
     <nav id="site-nav" class="nav-wrap">
-      <a href="#" class="nav-link">News</a>
-      <a href="#" class="nav-link">About</a>
-      <a href="#" class="nav-link">Specials</a>
-      <a href="#" class="nav-link">Contact</a>
+      <a href="#" class="nav-link">Winter</a>
+      <a href="#" class="nav-link">Spring</a>
+      <a href="#" class="nav-link">Summer</a>
+      <a href="#" class="nav-link">Fall</a>
     </nav>
     <a href="#" class="nav-link" id="trigram" onclick="navToggle()"></a>
   </header>
   <main>
     <section class="slideshow">
-      <!--slider goes here-->
-      <h2>slideshow here</h2>
+      <figure class="slides">
+        <img src="https://picsum.photos/seed/27th/1440/520" />
+      </figure>
+      <figure class="slides">
+        <img src="https://picsum.photos/seed/67th/1440/520" />
+      </figure>
+      <figure class="slides">
+        <img src="https://picsum.photos/seed/65th/1440/520" />
+      </figure>
+      <figure class="slides">
+        <img src="https://picsum.photos/seed/28th/1440/520" />
+      </figure>
+      <figure class="slides">
+        <img src="https://picsum.photos/seed/30th/1440/520" />
+      </figure>
+      <figure class="slides">
+        <img src="https://picsum.photos/seed/22nd/1440/520" />
+      </figure>
       <div class="controls">
-        <button>&#8249;</button>
-        <button>&#8250;</button>
+        <button class="prev" onclick="plusSlides(-1)">&#8249;</button>
+        <button class="next" onclick="plusSlides(1)">&#8250;</button>
+      </div>
+      <div class="caption-wrap">
+        <p id="caption">
+    
+        </p>
+
       </div>
     </section>
-    <section class="hero">
-      <h2>Images from <em>Lorem Picsum</em></h2>
-      <p>Visit <a href="https://picsum.photos/">that site</a> to learn how to use them.</p>
-    </section>
+    <div class="pics">
+      <img class="pic" src="https://picsum.photos/seed/27th/1440/520" onclick="currentSlide(1)" 
+      alt="Night full of stars" />
+      <img class="pic" src="https://picsum.photos/seed/67th/1440/520" onclick="currentSlide(2)" 
+      alt="Snow covered Mountains" />
+      <img class="pic" src="https://picsum.photos/seed/65th/1440/520" onclick="currentSlide(3)" 
+      alt="Jumping rock to rock" />
+      <img class="pic" src="https://picsum.photos/seed/28th/1440/520" onclick="currentSlide(4)" 
+      alt="Snowy night sky" />
+      <img class="pic" src="https://picsum.photos/seed/30th/1440/520" onclick="currentSlide(5)" 
+      alt="Foggy road" />
+      <img class="pic" src="https://picsum.photos/seed/22nd/1440/520" onclick="currentSlide(6)" 
+      alt="Water passageway" />
+    </div>
     <section class="grid-cont">
       <article class="card">
-        <!-- <img src="https://picsum.photos/480/320?grayscale&random=1" alt="alt-text reads . . ."> -->
-        <h4>Heading for a bit</h4>
-        <p>Purus semper eget duis at tellus at urna condimentum mattis pellentesque id nibh tortor id aliquet lectus proin nibh nisl condimentum id venenatis a condimentum</p>
-        <button onclick="sampleFunction()">Click</button><!--when clicked, the function runs-->
-      </article><!--end article.card-->
-      
-      <!--
-        add more article.cards inside this section
-      -->
-
+        <div class="card-content">
+          <img src="https://picsum.photos/seed/72nd/480/320" alt="foggy Concert crowd shot">
+          <div class="card-text">
+            <h4>Concert Photography </h4>
+            <p></p>
+            <p></p>
+          </div>
+        </div>
+        <button class="open-modal" onclick="expand('72nd')">Learn More <i data-feather="chevrons-up"></i></button>
+      </article>
+      <article class="card">
+        <div class="card-content">
+          <img src="https://picsum.photos/seed/78th/480/320" alt="birdseye of the beach with people">
+          <div class="card-text">
+            <h4>At the beach</h4>
+            <p></p>
+            <p></p>
+          </div>
+        </div>
+        <button class="open-modal" onclick="expand('78th')">Learn More <i data-feather="chevrons-up"></i></button>
+      </article>
+      <article class="card">
+        <div class="card-content">
+          <img src="https://picsum.photos/seed/982nd/480/320" alt="drone shot of a foggy mountain wih trees">
+          <div class="card-text">
+            <h4>Drone Shots</h4>
+            <p></p>
+            <p></p>
+          </div>
+        </div>
+        <button class="open-modal" onclick="expand('982nd')">Learn More <i data-feather="chevrons-up"></i></button>
+      </article>
+      <article class="card">
+        <div class="card-content">
+          <img src="https://picsum.photos/seed/79th/480/320" alt="Black and white rocks in the ocean">
+          <div class="card-text">
+            <h4>Black & White</h4>
+            <p></p>
+            <p></p>
+        </div>
+        <button class="open-modal" onclick="expand('79th')">Learn More <i data-feather="chevrons-up"></i></button>
+      </article>
+    </section>
+  </main>
+  <aside id="modal-wrap">
+    <div class="card-content">
+      <span class="close"><button class="close-btn" onclick="closes()">×</button></span>
+      <img alt="alt-text reads . . ." id="photo">
+      <div class="card-text none" id="72nd">
+        <h4>Concert Photography</h4>
+        <p>Concert Photography can be hard to shoot. You need to get the ISO just right while maintaining a high shutter speed to capture all of the action happening on stage.</p>
+        <p>In order to make sure your shots come out as clear as possible, play around with the ISO and appature until you like the looks of the shots. You can always fix lighting in post edits. To be safe I always suggest shooting some in auto to have as a backup.</p>
+      </div>
+      <div class="card-text none" id="78th">
+        <h4>At the Beach</h4>
+        <p>Shooting at the beach can be challenging for multiple reasons. The first of which is the crowds of people, in order to combat this, I suggest shooting in the early morning when there are less people. </p>
+        <p>ALso, keep an eye on the weather forcast. A cludy day means less people, and sometimes unique shots of the usual sunny beach.</p>
+      </div>
+      <div class="card-text none" id="982nd">
+        <h4>Drone Shots</h4>
+        <p>Shooting with a drone is something that every photographer should try. Whether at a concert, or at the beach, a drone can provide a unique prespective.</p>
+        <p>The most important thing to learn before shooting with a drone is how to fly it. Take some time to learn the controls and operating the camera setting before taking up over a beach or rocky mountain top.</p>
+      </div>
+      <div class="card-text none" id="79th">
+        <h4>Black & White</h4>
+        <p>Whether you are shooting in film, or doing it all in post editing, black and white photography is an easy way to add dramatic and timeless class to a portfolio and photoshoot.</p>
+        <p>My favorite tool to use is adobe photoshop and lightroom to adjust the gray scale. Juct because the photo is lacking color, does not mean you can't change the mood. </p>
+      </div>
+    </div>
+  </aside>
     </section>
   </main>
   <footer>
-    <p>&copy;2022 Your Name</p>
+    <p>&copy;2022 Cassidy Marshall</p>
   </footer>
   <script src="js/page.js"></script>
 </body>
